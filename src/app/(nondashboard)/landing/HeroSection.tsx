@@ -32,7 +32,7 @@ const HeroSection = () => {
           <div className="flex justify-center">
             <Input
               type="text"
-              value="Search query"
+              
               onChange={() => {}}
               placeholder="Search by city, naighborhood or address"
               className="w-full max-w-lg rounded-none rounded-l-xl border-none bg-white h-12"

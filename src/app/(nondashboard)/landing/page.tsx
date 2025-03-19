@@ -2,6 +2,8 @@ import React from 'react'
 import HeroSection from './HeroSection'
 import FeatureSection from './FeatureSection'
 import DiscoverSection from './DiscoverSection'
+import CallToActionSection from './CallToActionSection'
+import FooterSection from './FooterSection'
 
 const page = () => {
   return (
@@ -9,6 +11,8 @@ const page = () => {
       <HeroSection/>
       <FeatureSection/>
       <DiscoverSection/>
+      <CallToActionSection/>
+      
     </div>
   )
 }
