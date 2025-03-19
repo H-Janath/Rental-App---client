@@ -12,7 +12,7 @@ const page = () => {
       <FeatureSection/>
       <DiscoverSection/>
       <CallToActionSection/>
-      
+      <FooterSection/>
     </div>
   )
 }
