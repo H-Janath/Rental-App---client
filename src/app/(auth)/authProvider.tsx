@@ -57,7 +57,7 @@ const components ={
         <Authenticator.SignUp.FormFields/>
         <RadioGroupField
           legend="Role"
-          name="custome:role"
+          name="custom:role"
           errorMessage={validationErrors?.["custom:role"]}
           hasError={!!validationErrors?.["custom:role"]}
           isRequired
