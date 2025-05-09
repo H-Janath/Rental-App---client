@@ -16,7 +16,7 @@ export const api = createApi({
     }
   }),
   reducerPath: "api",
-  tagTypes: [],
+  tagTypes: ["Managers","Tenants"],
   endpoints: (build) => ({
     getAuthUser : build.query<User,void>({
       queryFn: async(_,_queryApi,_extraptions,fetchWithBQ)=>{
@@ -25,8 +25,7 @@ export const api = createApi({
           const {idToken} = session.tokens?? {};
           const user = await getCurrentUser();
           const userRole = idToken?.payload["custom:role"] as string;
-          
-          console.log("userRole")
+   
           
           const endpoint = 
             userRole === "manager"?
@@ -34,7 +33,6 @@ export const api = createApi({
             : `/tenants/${user.userId}`;
 
           let userDetailsReponse = await fetchWithBQ(endpoint);
-      
           if(userDetailsReponse.error &&
             userDetailsReponse.error.status ===404
           ){
@@ -59,10 +57,30 @@ export const api = createApi({
           return {error: error.message || "Could not fetch user data"}
         }
       }
+    }),
+    updateTenantSettings: build.mutation<Tenant, {congnitoId: string} & Partial<Tenant>>({
+      query: ({cognitoId,...updatedTenant}) => ({
+        url: `tenants/${cognitoId}`,
+        method: "PUT",
+        body: updatedTenant,
+      }),
+      invalidatesTags: (result)=>[{type: "Tenants", id: result?.id}]
+    }),
+    updateManagerSettings: build.mutation<Manager, {congnitoId: string} & Partial<Tenant>>({
+      query: ({cognitoId,...updatedTenant}) => ({
+        url: `managers/${cognitoId}`,
+        method: "PUT",
+        body: updatedTenant,
+      }),
+      invalidatesTags: (result)=>[{type: "Managers", id: result?.id}]
     })
   }),
+
+  
 });
 
 export const {
   useGetAuthUserQuery,
+  useUpdateTenantSettingsMutation,
+  useUpdateManagerSettingsMutation
 } = api;

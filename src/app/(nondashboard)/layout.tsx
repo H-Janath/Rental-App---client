@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 import { NAVBAR_HEIGHT } from '@/lib/constants'
 import { useGetAuthUserQuery } from '@/state/api'
 import { usePathname, useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const layout = ({ children }: { children: React.ReactNode }) => {
 
@@ -44,6 +44,3 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 
 export default layout
 
-function useState(arg0: boolean): [any, any] {
-  throw new Error('Function not implemented.')
-}
